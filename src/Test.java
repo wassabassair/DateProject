@@ -7,7 +7,7 @@ public class Test {
     private int startHour;
     private int length;
     private int classNum;
-    private int code;
+    final private int code;
     static int count = 1;
 
     public Test(String subject, Date day, int startHour, int length, int classNum) {
@@ -64,10 +64,6 @@ public class Test {
 
     public void setClassNum(int classNum) {
         this.classNum = classNum;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public String getSubject() {
