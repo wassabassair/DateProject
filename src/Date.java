@@ -6,7 +6,7 @@ public class Date {
     private int day;
     private int month;
     private int year;
-    private static int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public Date(int day, int month, int year) {
         this.day = day;
@@ -59,7 +59,7 @@ public class Date {
         int lastDigitOfYear = this.year % 10; // take last digit of
 
         if (this.day == this.month) {
-            if (this.day < 10) { // one mnuber
+            if (this.day < 10) { // one number
 
                 return this.day == lastDigitOfYear;
             } else { // 2 numbers

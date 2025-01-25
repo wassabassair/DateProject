@@ -46,53 +46,29 @@ public class Test {
         count++;
     }
 
-    public void setSubject(String subject) {
-        Subject = subject;
-    }
+    public void setSubject(String subject) {Subject = subject;}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setDate(Date date) {this.date = date;}
 
-    public void setStartHour(int startHour) {
-        this.startHour = startHour;
-    }
+    public void setStartHour(int startHour) {this.startHour = startHour;}
 
-    public void setLength(int length) {
-        this.length = length;
-    }
+    public void setLength(int length) {this.length = length;}
 
-    public void setClassNum(int classNum) {
-        this.classNum = classNum;
-    }
+    public void setClassNum(int classNum) {this.classNum = classNum;}
 
-    public String getSubject() {
-        return Subject;
-    }
+    public String getSubject() {return Subject;}
 
-    public Date getDate() {
-        return date;
-    }
+    public Date getDate() {return date;}
 
-    public int getStartHour() {
-        return startHour;
-    }
+    public int getStartHour() {return startHour;}
 
-    public int getLength() {
-        return length;
-    }
+    public int getLength() {return length;}
 
-    public int getClassNum() {
-        return classNum;
-    }
+    public int getClassNum() {return classNum;}
 
-    public int getCode() {
-        return code;
-    }
+    public int getCode() {return code;}
 
-    boolean isAtSummer() {
-        return (this.date.getMonth() <= 10 && this.date.getMonth() >= 6);
-    }
+    boolean isAtSummer() {return (this.date.getMonth() <= 10 && this.date.getMonth() >= 6);}
 
     boolean conflict(Test other) {
         int thisEndHour = this.startHour + this.length;
