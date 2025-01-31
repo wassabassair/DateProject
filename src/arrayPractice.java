@@ -8,7 +8,7 @@ public class arrayPractice {
                 sum += students[i].getGrade();
                 count++;
             }
-            return (sum/count);
+            if (count != 0) return (sum/count);
         }
     }
 }
