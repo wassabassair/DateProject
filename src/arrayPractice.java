@@ -1,5 +1,5 @@
 public class arrayPractice {
-    public double arrayPractice(students[] students) {
+    public double arrayPractice(student[] students) {
         Student s = null;
         int sum = 0;
         int count = 0;
