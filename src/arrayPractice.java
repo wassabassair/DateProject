@@ -1,9 +1,14 @@
 public class arrayPractice {
-    public arrayPractice(Student students[]) {
-        int min = 100;
+    public double arrayPractice(students[] students) {
+        Student s = null;
+        int sum = 0;
+        int count = 0;
         for (int i = 0; i < students.length; i++) {
-            min = Math.min(students[i].getGrade(), min);
+            if (students[i].getSubject().String.equals("Math")) {
+                sum += students[i].getGrade();
+                count++;
+            }
+            return (sum/count);
         }
-        System.out.println(min);
     }
 }
