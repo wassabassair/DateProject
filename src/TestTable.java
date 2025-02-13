@@ -12,6 +12,7 @@ public class TestTable {
 
     public TestTable(TestTable other) {
         this.tests = new Test[10];
+        //system array copy instead of loop
         System.arraycopy(other.tests, 0, this.tests, 0, other.numTests);
         this.numTests = other.numTests;
     }
@@ -88,6 +89,7 @@ public class TestTable {
 
     public boolean addTest(Test t) {
         if (numTests >= tests.length) return false;
+        //cant add if full
         for (int i = 0; i < numTests; i++) {
             if (tests[i].getSubject().equals(t.getSubject()) || tests[i].getDate().equals(t.getDate())) {
                 return false;
