@@ -1,17 +1,20 @@
-import java.util.Scanner;
-
 public class Folder {
 
-    private File[] folder;
+    private final File[] folder;
     private int numFiles;
+    private static int folderCounter = 0;
+    private static int fileCounter = 0;
 
     public Folder() {
         folder = new File[100];
         numFiles = 0;
+        folderCounter++;
     }
     public Folder(Folder other) {
         this.folder = other.folder;
         this.numFiles = other.numFiles;
+        folderCounter++;
+        fileCounter += other.numFiles;
     }
     public File getFile(int i) {
         if (i > 0 || i >= numFiles) {
@@ -19,9 +22,10 @@ public class Folder {
         }
         return folder[i];
     }
-    public int getNumFiles() {
+    public int getNumFiles(int i) {
         return numFiles;
     }
+
     public int calculateSize() {
         int totalSize = 0;
         for (int i = 0; i < numFiles; i++) {
@@ -31,7 +35,7 @@ public class Folder {
         }
         return totalSize;
     }
-    public int contain(File f) {
+    private int contain(File f) {
         for (int i = 0; i < numFiles; i++) {
             if (f == folder[i]) {
                 return i;
@@ -43,13 +47,12 @@ public class Folder {
         if (numFiles >= folder.length) {
             return false;
         }
-        if (contain(f) != -1) {
-            return false;
-        }
         folder[numFiles] = f;
         numFiles++;
+        fileCounter++; // Always increase fileCounter, even for duplicates
         return true;
     }
+
     boolean delete(File f) {
         for (int i = 0; i < numFiles; i++) {
             if (folder[i] != null && folder[i].isSameFile(f)) { // Check if file matches
@@ -59,6 +62,7 @@ public class Folder {
                 }
                 folder[numFiles - 1] = null; // Remove duplicate last element
                 numFiles--;
+
                 return true;
             }
         }
@@ -162,48 +166,11 @@ public class Folder {
         return result;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Folder folderA = new Folder();
-        Folder folderB = new Folder();
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Enter size for file number " + (i + 1) + ":");
-            int fileSize = sc.nextInt();
-            System.out.println("Enter name for file number " + (i + 1) + ":");
-            String name = sc.next();
-            File tempFile = new File(name, fileSize);
-            folderA.add(tempFile);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println("________________FolderB__________________");
-            System.out.println("Enter size for file number " + (i + 1) + ":");
-            int fileSize = sc.nextInt();
-            System.out.println("Enter name for file number " + (i + 1) + ":");
-            String name = sc.next();
-            File tempFile = new File(name, fileSize);
-            folderB.add(tempFile);
-        }
-        Folder resultFolder = folderA.intersection(folderB);
-        for (int i = 0; i < resultFolder.getNumFiles(); i++) {
-            if (resultFolder.getFile(i).getSize() < 2500) {
-                resultFolder.delete(resultFolder.getFile(i));
-            }
-        }
-        System.out.println(resultFolder.toString());
-
-        // Create a folder and add four files without user input
-        Folder folder = new Folder();
-        folder.add(new File("file1.txt", 500));
-        folder.add(new File("file2.txt", 2000));
-        folder.add(new File("file3.txt", 1500));
-        folder.add(new File("file4.txt", 3000));
-
-        // Print the two largest files
-        Folder largestTwo = folder.subtract(folder.smallestK(folder.getNumFiles() - 2));
-        System.out.println("Two largest files:");
-        System.out.println(largestTwo.toString());
-
-
-        }
+    public int getNumFolders() {
+        return folderCounter;
     }
+
+    public static double GetAverageSize() {
+        return (double) fileCounter / (double) folderCounter;
+    }
+}

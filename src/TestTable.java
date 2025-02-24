@@ -153,4 +153,26 @@ public class TestTable {
         }
         return totalDiff / (double) (numTests - 1);
     }
+
+    // String representation
+    @Override
+    public String toString() {
+        if (numTests == 0) return "No tests available.";
+        Test[] sortedTests = new Test[numTests];
+        System.arraycopy(tests, 0, sortedTests, 0, numTests);
+        for (int i = 0; i < numTests - 1; i++) {
+            for (int j = i + 1; j < numTests; j++) {
+                if (sortedTests[i].getDate().compareTo(sortedTests[j].getDate()) > 0) {
+                    Test temp = sortedTests[i];
+                    sortedTests[i] = sortedTests[j];
+                    sortedTests[j] = temp;
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Test t : sortedTests) {
+            sb.append(t.toString()).append("\n");
+        }
+        return sb.toString();
+    }
 }
